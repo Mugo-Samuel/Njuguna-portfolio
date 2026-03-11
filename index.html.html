@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Njuguna | Construction & Design Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sand:    #1C2330;
+      --sand-2:  #2A3344;
+      --sand-3:  #3D4F68;
+      --brown:   #C8872A;
+      --brown-d: #a06820;
+      --ink:     #FAFAF8;
+      --ink-mid: #C8D4E8;
+      --ink-lt:  #8A9AB5;
+      --white:   #1C2330;
+      --accent:  #C8872A;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--sand); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 64px;
+      background: rgba(28,35,48,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--sand-3);
+      animation: slideDown 0.7s ease both;
+    }
+    @keyframes slideDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600;
+      color: var(--ink); letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+    .nav-name span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--ink-lt); text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--white); background: var(--accent);
+      padding: 10px 24px; text-decoration: none;
+      border-radius: 2px; transition: background 0.25s;
+    }
+    .nav-cta:hover { background: var(--brown-d); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--sand);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 160px 72px 80px;
+      position: relative;
+    }
+    .hero-left::after {
+      content: ''; position: absolute;
+      top: 0; right: -1px; bottom: 0;
+      width: 1px; background: var(--sand-3);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); font-weight: 500;
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+    .hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--accent); }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.8rem, 6vw, 6.5rem);
+      font-weight: 300; line-height: 1.0; color: var(--ink);
+      margin-bottom: 8px;
+      animation: fadeUp 0.9s 0.35s ease both;
+    }
+    .hero-name strong { font-weight: 700; display: block; }
+    .hero-name em { font-style: italic; color: var(--accent); }
+
+    .hero-title-line {
+      width: 60px; height: 2px; background: var(--sand-3);
+      margin: 28px 0;
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+
+    .hero-desc {
+      font-size: 1rem; color: var(--ink-mid); line-height: 1.75;
+      max-width: 420px; font-weight: 300; margin-bottom: 40px;
+      animation: fadeUp 0.9s 0.6s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp 0.9s 0.75s ease both;
+    }
+
+    .btn-fill {
+      background: var(--accent); color: var(--white);
+      padding: 13px 32px; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: background 0.25s, transform 0.2s; display: inline-block;
+    }
+    .btn-fill:hover { background: var(--brown-d); transform: translateY(-2px); }
+
+    .btn-ghost {
+      border: 1.5px solid var(--sand-3); color: var(--ink-mid);
+      padding: 13px 32px; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: border-color 0.25s, color 0.25s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-right {
+      background: var(--white);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 140px 64px 80px; gap: 28px;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    .hero-big-initial {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(10rem, 18vw, 18rem);
+      font-weight: 700; font-style: italic;
+      color: var(--sand-2); line-height: 1;
+      user-select: none; pointer-events: none;
+    }
+
+    .hero-spec-list { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 320px; }
+    .hero-spec-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; border-bottom: 1px solid var(--sand-2);
+      font-size: 0.85rem; color: var(--ink-mid); font-weight: 400;
+    }
+    .hero-spec-item:first-child { border-top: 1px solid var(--sand-2); }
+    .spec-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+    /* SECTIONS */
+    .section { padding: 100px 64px; }
+    .section-alt { background: var(--sand); }
+
+    .tag {
+      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .tag::before { content:''; width:24px; height:1px; background:var(--accent); }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 400; line-height: 1.1; color: var(--ink);
+    }
+    .section-heading em { font-style: italic; color: var(--accent); }
+    .section-heading strong { font-weight: 700; }
+
+    .section-body {
+      color: var(--ink-mid); font-size: 0.95rem;
+      line-height: 1.8; font-weight: 300; max-width: 520px;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .about-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .skill-badge {
+      background: #2A3344; border: 1px solid rgba(200,135,42,0.2);
+      color: var(--ink-mid); border-radius: 2px;
+      display: flex; align-items: center; gap: 8px;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .skill-badge:hover { border-color: var(--accent); color: var(--accent); }
+    .skill-badge .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+
+    .about-card-main {
+      background: var(--white); border: 1px solid var(--sand-3);
+      border-radius: 3px; padding: 40px; position: relative;
+    }
+    .about-card-main::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 60px; background: var(--accent);
+    }
+
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem; font-weight: 300; font-style: italic;
+      color: var(--ink); line-height: 1.4; margin-bottom: 24px;
+    }
+    .about-quote strong { font-weight: 600; font-style: normal; color: var(--accent); }
+
+    .about-attrs { display: flex; flex-direction: column; gap: 14px; }
+    .attr-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.85rem; color: var(--ink-mid); font-weight: 300; line-height: 1.5;
+    }
+    .attr-icon { font-size: 1rem; margin-top: 1px; flex-shrink: 0; }
+
+    .about-stamp {
+      position: absolute; bottom: -20px; right: -20px;
+      width: 88px; height: 88px; background: var(--accent); border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--white); font-family: 'Cormorant Garamond', serif;
+      box-shadow: 0 8px 24px rgba(181,113,58,0.25);
+    }
+    .stamp-num { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+    .stamp-lbl { font-size: 0.52rem; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; opacity: 0.85; }
+
+    /* EXPERTISE */
+    .expertise-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+
+    .expertise-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(200,135,42,0.15);
+      border: 1px solid var(--sand-2); border-radius: 4px; overflow: hidden;
+    }
+
+    .exp-card {
+      background: var(--white); padding: 36px 30px;
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .exp-card::after {
+      content: ''; position: absolute; bottom: 0; left: 30px; right: 30px;
+      height: 2px; background: var(--accent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+    }
+    .exp-card:hover { background: var(--sand); }
+    .exp-card:hover::after { transform: scaleX(1); }
+
+    .exp-icon { font-size: 1.8rem; margin-bottom: 20px; display: block; }
+    .exp-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 3rem;
+      font-weight: 300; color: var(--sand-3);
+      position: absolute; top: 20px; right: 20px; line-height: 1;
+    }
+    .exp-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: 12px;
+    }
+    .exp-card p { font-size: 0.85rem; color: var(--ink-lt); line-height: 1.65; font-weight: 300; }
+
+    /* WORK */
+    .work-header { margin-bottom: 48px; }
+
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .work-card {
+      background: #2A3344; border-radius: 3px; overflow: hidden;
+      border: 1px solid rgba(200,135,42,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .work-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(124,92,62,0.1); }
+
+    .work-thumb {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .wt-1 { background: linear-gradient(135deg, #e8ddd0, #d4c4b0); }
+    .wt-2 { background: linear-gradient(135deg, #d0dce8, #b8ccd8); }
+    .wt-3 { background: linear-gradient(135deg, #dde8d0, #c4d8b8); }
+    .wt-4 { background: linear-gradient(135deg, #e8d0d8, #d8b8c4); }
+    .wt-5 { background: linear-gradient(135deg, #d8d0e8, #c4b8d8); }
+    .wt-6 { background: linear-gradient(135deg, #e8e0d0, #d8d0b8); }
+
+    .work-thumb-icon { font-size: 3rem; opacity: 0.7; }
+    .work-thumb-cat {
+      position: absolute; bottom: 10px; left: 12px;
+      background: rgba(28,35,48,0.8); color: var(--accent);
+      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 600; padding: 4px 10px; border-radius: 2px;
+    }
+
+    .work-body { padding: 22px; }
+    .work-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.3;
+    }
+    .work-body p { font-size: 0.8rem; color: var(--ink-lt); line-height: 1.6; font-weight: 300; }
+
+    /* VALUES */
+    .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+    .values-list { margin-top: 40px; display: flex; flex-direction: column; }
+    .value-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--sand-2);
+    }
+    .value-item:first-child { border-top: 1px solid var(--sand-2); }
+    .value-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic; color: var(--sand-3);
+      min-width: 32px; line-height: 1.2; transition: color 0.25s;
+    }
+    .value-item:hover .value-num { color: var(--accent); }
+    .value-text h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+    .value-text p { font-size: 0.82rem; color: var(--ink-lt); line-height: 1.65; font-weight: 300; }
+
+    .values-visual {
+      background: var(--sand); border: 1px solid var(--sand-3);
+      border-radius: 3px; padding: 52px 44px; text-align: center;
+    }
+    .values-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(5rem, 9vw, 9rem); font-weight: 700; font-style: italic;
+      color: var(--accent); line-height: 1; margin-bottom: 4px;
+    }
+    .values-big-sub { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-lt); margin-bottom: 32px; }
+    .values-divider { width: 32px; height: 1px; background: var(--sand-3); margin: 0 auto 28px; }
+    .values-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1.05rem; color: var(--ink-mid); line-height: 1.65;
+    }
+    .values-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .vstat {
+      background: #1C2330; border: 1px solid rgba(200,135,42,0.2);
+      border-radius: 2px; padding: 18px 14px;
+    }
+    .vstat-n { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--accent); line-height: 1; }
+    .vstat-l { font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-lt); margin-top: 4px; }
+
+    /* CONTACT */
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .contact-info-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .ci-item {
+      display: flex; align-items: center; gap: 18px;
+      padding: 18px 20px; background: #2A3344;
+      border: 1px solid rgba(200,135,42,0.2); border-radius: 2px; transition: border-color 0.25s;
+    }
+    .ci-item:hover { border-color: var(--accent); }
+    .ci-icon {
+      width: 42px; height: 42px; background: rgba(181,113,58,0.1);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .ci-detail h4 { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; font-weight: 600; }
+    .ci-detail p { font-size: 0.92rem; color: var(--ink); font-weight: 400; }
+
+    .contact-actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+    .contact-right {
+      background: #2A3344; border: 1px solid rgba(200,135,42,0.2);
+      border-radius: 3px; padding: 52px 44px; text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-right::before {
+      content: 'N'; font-family: 'Cormorant Garamond', serif;
+      font-size: 18rem; font-weight: 700; font-style: italic;
+      color: rgba(200,135,42,0.06); position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -48%); line-height: 1; pointer-events: none;
+    }
+    .contact-right-inner { position: relative; z-index: 1; }
+    .contact-right h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; font-style: italic; color: var(--ink); margin-bottom: 10px;
+    }
+    .contact-right p { font-size: 0.85rem; color: var(--ink-lt); line-height: 1.7; font-weight: 300; margin-bottom: 24px; }
+    .contact-phone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600; color: var(--accent);
+      letter-spacing: 1px; margin-bottom: 24px; display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #131A23; padding: 36px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600; color: var(--sand); letter-spacing: 0.5px;
+    }
+    .footer-name span { color: var(--accent); }
+    .footer-copy { font-size: 0.75rem; color: var(--ink-lt); text-align: center; line-height: 1.6; }
+    .footer-brand { font-size: 0.72rem; color: var(--ink-lt); text-align: right; line-height: 1.6; }
+    .footer-brand strong { color: var(--accent); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 28px 60px; }
+      .hero-right { display: none; }
+      .section { padding: 64px 24px; }
+      .about-grid, .values-grid, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .expertise-header { grid-template-columns: 1fr; }
+      .expertise-grid, .work-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .footer-brand { text-align: center; }
+      .about-stamp { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-name">Njuguna<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+254757229792" class="nav-cta">Call Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Construction &amp; Design Portfolio</div>
+    <h1 class="hero-name">
+      <em>Hello,</em>
+      <strong>I'm Njuguna.</strong>
+    </h1>
+    <div class="hero-title-line"></div>
+    <p class="hero-desc">
+      A passionate construction and design professional with expertise spanning residential homes, commercial offices, warehouses, and civil infrastructure — including bridge and tunnel maintenance.
+    </p>
+    <div class="hero-actions">
+      <a href="#expertise" class="btn-fill">View My Expertise</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-big-initial">N</div>
+    <div class="hero-spec-list">
+      <div class="hero-spec-item"><span>Residential Homes</span><span class="spec-dot"></span></div>
+      <div class="hero-spec-item"><span>Commercial Offices</span><span class="spec-dot"></span></div>
+      <div class="hero-spec-item"><span>Warehouse Design</span><span class="spec-dot"></span></div>
+      <div class="hero-spec-item"><span>Bridge Maintenance</span><span class="spec-dot"></span></div>
+      <div class="hero-spec-item"><span>Tunnel Maintenance</span><span class="spec-dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section section-alt">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="tag">About Me</div>
+      <h2 class="section-heading" style="margin-bottom:20px;">
+        Grounded in <em>precision,</em><br>passionate about <strong>craft.</strong>
+      </h2>
+      <p class="section-body" style="margin-bottom:20px;">
+        I bring a detail-focused, technically grounded approach to every construction and design project. Whether it's a family home, a commercial space, or infrastructure upkeep, I approach each challenge with care and commitment to quality.
+      </p>
+      <p class="section-body" style="margin-bottom:36px;">
+        My expertise covers the full spectrum — from early design and planning stages right through to construction delivery and long-term structural maintenance.
+      </p>
+      <div class="about-skills">
+        <div class="skill-badge"><span class="dot"></span> Design &amp; Planning</div>
+        <div class="skill-badge"><span class="dot"></span> Structural Analysis</div>
+        <div class="skill-badge"><span class="dot"></span> Site Management</div>
+        <div class="skill-badge"><span class="dot"></span> Maintenance &amp; Repair</div>
+        <div class="skill-badge"><span class="dot"></span> Client Consultation</div>
+        <div class="skill-badge"><span class="dot"></span> Project Scoping</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="position:relative;">
+      <div class="about-card-main">
+        <p class="about-quote">
+          Building isn't just about structures — it's about creating <strong>spaces people can trust.</strong>
+        </p>
+        <div class="about-attrs">
+          <div class="attr-row">
+            <span class="attr-icon">🏠</span>
+            <span>Residential design and construction tailored to individual client needs and budgets.</span>
+          </div>
+          <div class="attr-row">
+            <span class="attr-icon">🌉</span>
+            <span>Civil infrastructure expertise covering bridge and tunnel inspection and maintenance.</span>
+          </div>
+          <div class="attr-row">
+            <span class="attr-icon">📐</span>
+            <span>A systematic, honest approach from planning to project completion.</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-stamp">
+        <span class="stamp-num">KE</span>
+        <span class="stamp-lbl">Kenya<br>Based</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise" class="section" style="background:var(--white);">
+  <div class="expertise-header reveal">
+    <div>
+      <div class="tag">What I Do</div>
+      <h2 class="section-heading">Areas of <em>Expertise</em></h2>
+    </div>
+    <p class="section-body">Five core specialities that reflect hands-on knowledge and a genuine interest in delivering quality built environments.</p>
+  </div>
+  <div class="expertise-grid reveal">
+    <div class="exp-card">
+      <span class="exp-num">01</span>
+      <span class="exp-icon">🏠</span>
+      <h3>Residential Homes</h3>
+      <p>Design and construction of comfortable, structurally sound family homes — from compact bungalows to modern multi-storey residences tailored to the client's vision.</p>
+    </div>
+    <div class="exp-card">
+      <span class="exp-num">02</span>
+      <span class="exp-icon">🏢</span>
+      <h3>Commercial Offices</h3>
+      <p>Planning and building functional office spaces that balance aesthetic appeal, workflow efficiency, and structural integrity for businesses of all sizes.</p>
+    </div>
+    <div class="exp-card">
+      <span class="exp-num">03</span>
+      <span class="exp-icon">🏭</span>
+      <h3>Warehouse Design &amp; Build</h3>
+      <p>Large-scale warehouse structures designed for optimal storage, logistics access, and long-term durability — with attention to load capacity and ventilation.</p>
+    </div>
+    <div class="exp-card">
+      <span class="exp-num">04</span>
+      <span class="exp-icon">🌉</span>
+      <h3>Bridge Maintenance</h3>
+      <p>Inspection, assessment, and repair of bridge structures ensuring long-term structural safety, regulatory compliance, and extended service life.</p>
+    </div>
+    <div class="exp-card">
+      <span class="exp-num">05</span>
+      <span class="exp-icon">🚇</span>
+      <h3>Tunnel Maintenance</h3>
+      <p>Maintenance services for tunnel structures addressing waterproofing, lining integrity, drainage systems, and safety — keeping infrastructure reliable and safe.</p>
+    </div>
+    <div class="exp-card" style="background:var(--sand);">
+      <span class="exp-num" style="color:var(--sand-3);">+</span>
+      <span class="exp-icon">📐</span>
+      <h3>Structural Consultation</h3>
+      <p>Early-stage design reviews, layout guidance, and technical input for clients who need sound structural advice before committing to a full construction scope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="section section-alt">
+  <div class="work-header reveal">
+    <div class="tag">Portfolio</div>
+    <h2 class="section-heading">Selected <em>Work</em></h2>
+    <p class="section-body" style="margin-top:12px;">A showcase of design studies, applied projects, and technical work across all five areas of expertise.</p>
+  </div>
+  <div class="work-grid reveal">
+    <div class="work-card">
+      <div class="work-thumb wt-1">
+        <div class="work-thumb-icon">🏠</div>
+        <div class="work-thumb-cat">Residential</div>
+      </div>
+      <div class="work-body">
+        <h3>3-Bedroom Family Home Design</h3>
+        <p>Structural layout and architectural plan for a modern family home, optimised for a 50×100 ft suburban plot with open-plan living spaces.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb wt-2">
+        <div class="work-thumb-icon">🏢</div>
+        <div class="work-thumb-cat">Commercial</div>
+      </div>
+      <div class="work-body">
+        <h3>Multi-Tenant Office Block</h3>
+        <p>Floor plan and structural concept for a 3-storey commercial block accommodating multiple tenants with shared amenities and parking.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb wt-3">
+        <div class="work-thumb-icon">🏭</div>
+        <div class="work-thumb-cat">Industrial</div>
+      </div>
+      <div class="work-body">
+        <h3>Logistics Warehouse Layout</h3>
+        <p>Warehouse design study incorporating column spacing, bay door sizing, and ventilation planning for a mid-scale logistics and storage facility.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb wt-4">
+        <div class="work-thumb-icon">🌉</div>
+        <div class="work-thumb-cat">Civil</div>
+      </div>
+      <div class="work-body">
+        <h3>Bridge Inspection Report</h3>
+        <p>Detailed assessment of a rural bridge structure identifying maintenance priorities, repair recommendations, and load capacity evaluations.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb wt-5">
+        <div class="work-thumb-icon">🚇</div>
+        <div class="work-thumb-cat">Civil</div>
+      </div>
+      <div class="work-body">
+        <h3>Tunnel Lining Integrity Study</h3>
+        <p>Analysis of tunnel lining deterioration patterns, waterproofing strategies, and a maintenance schedule for a road tunnel section.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb wt-6">
+        <div class="work-thumb-icon">📐</div>
+        <div class="work-thumb-cat">Mixed Use</div>
+      </div>
+      <div class="work-body">
+        <h3>Mixed-Use Development Plan</h3>
+        <p>Conceptual development combining ground-floor retail, upper-floor apartments, and basement parking with site analysis and structural feasibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" class="section" style="background:var(--white);">
+  <div class="values-grid">
+    <div class="reveal">
+      <div class="tag">My Approach</div>
+      <h2 class="section-heading" style="margin-bottom:8px;">Why Work<br><em>With Me?</em></h2>
+      <p class="section-body" style="margin-top:16px;">I bring a principled, people-first approach to every project — whether big or small.</p>
+      <div class="values-list">
+        <div class="value-item">
+          <div class="value-num">01</div>
+          <div class="value-text">
+            <h4>Technical Foundation</h4>
+            <p>Every project is anchored in structured engineering knowledge and current construction methodologies.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02</div>
+          <div class="value-text">
+            <h4>Focused Specialities</h4>
+            <p>I work within five well-defined areas rather than overpromising — delivering depth over breadth.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03</div>
+          <div class="value-text">
+            <h4>Client-First Thinking</h4>
+            <p>Listening comes before building. Every plan is shaped by what the client actually needs.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">04</div>
+          <div class="value-text">
+            <h4>Honest &amp; Transparent</h4>
+            <p>Clear project scoping, realistic timelines, and no hidden surprises — from consultation to handover.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="values-visual reveal">
+      <div class="values-big">5</div>
+      <div class="values-big-sub">Core Specialities</div>
+      <div class="values-divider"></div>
+      <p class="values-quote">"Good construction is not just about building structures — it's about building spaces people can rely on for years to come."</p>
+      <div class="values-stats">
+        <div class="vstat"><div class="vstat-n">KE</div><div class="vstat-l">Kenya Based</div></div>
+        <div class="vstat"><div class="vstat-n">24/7</div><div class="vstat-l">Available</div></div>
+        <div class="vstat"><div class="vstat-n">100%</div><div class="vstat-l">Dedicated</div></div>
+        <div class="vstat"><div class="vstat-n">5+</div><div class="vstat-l">Disciplines</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-alt">
+  <div class="contact-wrap">
+    <div class="reveal">
+      <div class="tag">Get In Touch</div>
+      <h2 class="section-heading" style="margin-bottom:16px;">Let's <em>Connect</em></h2>
+      <p class="section-body">Have a project in mind or need advice? I'm happy to have a conversation about your vision and how I can help.</p>
+      <div class="contact-info-list">
+        <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-detail">
+            <h4>Phone / WhatsApp</h4>
+            <p>+254 757 229 792</p>
+          </div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-detail">
+            <h4>Location</h4>
+            <p>Kenya</p>
+          </div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">🏗️</div>
+          <div class="ci-detail">
+            <h4>Specialities</h4>
+            <p>Residential · Commercial · Warehouses · Bridge &amp; Tunnel</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-actions">
+        <a href="tel:+254757229792" class="btn-fill">📞 Call Now</a>
+        <a href="https://wa.me/254757229792" target="_blank" class="btn-ghost">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="contact-right reveal">
+      <div class="contact-right-inner">
+        <h3>Ready to build something great?</h3>
+        <p>Reach out directly and let's discuss your project. I respond promptly and look forward to hearing from you.</p>
+        <span class="contact-phone">+254 757 229 792</span>
+        <a href="tel:+254757229792" class="btn-fill" style="display:inline-block;">Start a Conversation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Njuguna<span>.</span></div>
+  <div class="footer-copy">
+    © 2026 Njuguna. Personal Construction &amp; Design Portfolio.<br>
+    Residential · Commercial · Warehouses · Bridge &amp; Tunnel Maintenance
+  </div>
+  <div class="footer-brand">
+    Portfolio built by<br>
+    <strong>S.M Analytics</strong>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
