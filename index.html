@@ -288,22 +288,21 @@
     .work-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(124,92,62,0.1); }
 
     .work-thumb {
-      height: 160px; display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
+      height: 200px; position: relative; overflow: hidden;
     }
-    .wt-1 { background: linear-gradient(135deg, #e8ddd0, #d4c4b0); }
-    .wt-2 { background: linear-gradient(135deg, #d0dce8, #b8ccd8); }
-    .wt-3 { background: linear-gradient(135deg, #dde8d0, #c4d8b8); }
-    .wt-4 { background: linear-gradient(135deg, #e8d0d8, #d8b8c4); }
-    .wt-5 { background: linear-gradient(135deg, #d8d0e8, #c4b8d8); }
-    .wt-6 { background: linear-gradient(135deg, #e8e0d0, #d8d0b8); }
-
-    .work-thumb-icon { font-size: 3rem; opacity: 0.7; }
+    .work-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .work-card:hover .work-thumb img { transform: scale(1.06); }
     .work-thumb-cat {
       position: absolute; bottom: 10px; left: 12px;
-      background: rgba(28,35,48,0.8); color: var(--accent);
+      background: rgba(28,35,48,0.82); color: var(--accent);
       font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 600; padding: 4px 10px; border-radius: 2px;
+      font-weight: 600; padding: 5px 12px; border-radius: 2px;
+      backdrop-filter: blur(4px);
     }
 
     .work-body { padding: 22px; }
@@ -586,8 +585,8 @@
   </div>
   <div class="work-grid reveal">
     <div class="work-card">
-      <div class="work-thumb wt-1">
-        <div class="work-thumb-icon">🏠</div>
+      <div class="work-thumb">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Modern residential home" loading="lazy"/>
         <div class="work-thumb-cat">Residential</div>
       </div>
       <div class="work-body">
@@ -596,8 +595,8 @@
       </div>
     </div>
     <div class="work-card">
-      <div class="work-thumb wt-2">
-        <div class="work-thumb-icon">🏢</div>
+      <div class="work-thumb">
+        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Commercial office building" loading="lazy"/>
         <div class="work-thumb-cat">Commercial</div>
       </div>
       <div class="work-body">
@@ -606,8 +605,8 @@
       </div>
     </div>
     <div class="work-card">
-      <div class="work-thumb wt-3">
-        <div class="work-thumb-icon">🏭</div>
+      <div class="work-thumb">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80" alt="Industrial warehouse" loading="lazy"/>
         <div class="work-thumb-cat">Industrial</div>
       </div>
       <div class="work-body">
@@ -616,8 +615,8 @@
       </div>
     </div>
     <div class="work-card">
-      <div class="work-thumb wt-4">
-        <div class="work-thumb-icon">🌉</div>
+      <div class="work-thumb">
+        <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Bridge_Under_Repair_(50891546058).jpg&width=600" alt="Bridge inspection and maintenance" loading="lazy"/>
         <div class="work-thumb-cat">Civil</div>
       </div>
       <div class="work-body">
@@ -626,8 +625,8 @@
       </div>
     </div>
     <div class="work-card">
-      <div class="work-thumb wt-5">
-        <div class="work-thumb-icon">🚇</div>
+      <div class="work-thumb">
+        <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Gotthard_Road_Tunnel_Inside.JPG&width=600" alt="Road tunnel interior" loading="lazy"/>
         <div class="work-thumb-cat">Civil</div>
       </div>
       <div class="work-body">
@@ -636,8 +635,8 @@
       </div>
     </div>
     <div class="work-card">
-      <div class="work-thumb wt-6">
-        <div class="work-thumb-icon">📐</div>
+      <div class="work-thumb">
+        <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?w=600&q=80" alt="Mixed use development building" loading="lazy"/>
         <div class="work-thumb-cat">Mixed Use</div>
       </div>
       <div class="work-body">
@@ -757,7 +756,7 @@
     Residential · Commercial · Warehouses · Bridge &amp; Tunnel Maintenance
   </div>
   <div class="footer-brand">
-    Powered by<br>
+    Portfolio built by<br>
     <strong>S.M Analytics</strong>
   </div>
 </footer>
